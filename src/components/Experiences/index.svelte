@@ -69,10 +69,10 @@
 					class="absolute left-0 top-[0.45rem] h-[0.55rem] w-[0.55rem] rounded-full dot"
 					class:dot-active={index === 0}
 					aria-hidden="true"
-				/>
+				></span>
 				<!-- rail line -->
 				{#if index < experiences.length - 1}
-					<span class="absolute left-[0.26rem] top-[1.3rem] bottom-0 w-px rail" aria-hidden="true" />
+					<span class="absolute left-[0.26rem] top-[1.3rem] bottom-0 w-px rail" aria-hidden="true"></span>
 				{/if}
 
 				<button
