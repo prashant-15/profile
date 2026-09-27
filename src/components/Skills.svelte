@@ -10,50 +10,68 @@
 	import GraphqlIcon from '$lib/assets/graphql.png';
 	import CppIcon from '$lib/assets/cpp.png';
 	import NextJsIcon from '$lib/assets/next-js.png';
+	import SvelteIcon from '$lib/assets/svelte-icon.webp';
 
-	const languages = [
-		{ name: 'Typescript', Icon: TypescriptIcon },
-		{ name: 'Javascript', Icon: JavascriptIcon },
+	const skills = [
+		{ name: 'TypeScript', Icon: TypescriptIcon },
+		{ name: 'JavaScript', Icon: JavascriptIcon },
+		{ name: 'React', Icon: ReactIcon },
+		{ name: 'Svelte', Icon: SvelteIcon },
+		{ name: 'Node.js', Icon: NodeJsIcon },
+		{ name: 'Next.js', Icon: NextJsIcon },
 		{ name: 'GraphQL', Icon: GraphqlIcon },
-		{ name: 'HTML', Icon: HtmlIcon },
-		{ name: 'CSS', Icon: CssIcon },
+		{ name: 'MongoDB', Icon: MongoDbIcon },
+		{ name: 'Redis', Icon: RedisIcon },
+		{ name: 'HTML/CSS', Icon: CssIcon },
 		{ name: 'C++', Icon: CppIcon }
 	];
 
-	const technologies = [
-		{ name: 'React', Icon: ReactIcon },
-		{ name: 'NodeJS', Icon: NodeJsIcon },
-		{ name: 'NextJS', Icon: NextJsIcon },
-		{ name: 'MongoDB', Icon: MongoDbIcon },
-		{ name: 'Redis', Icon: RedisIcon }
-	];
+	// HTML has no distinct icon asset; CSS icon stands in for the pair.
 </script>
 
-<div class="w-[50rem] mt-28">
-	<h2 class="text-text-primary italic">Languages/Technologies I've recently worked on...</h2>
-	<div class="mx-2 mt-4 flex flex-row">
-		<div class="w-1/2">
-			{#each languages as language}
-				<div class="flex flex-row gap-x-3 items-center mb-3">
-					<img class="h-6" src={language.Icon} alt={language.name + '-icon'} />
-					<p class="text-text-secondary tech">{language.name}</p>
-				</div>
-			{/each}
-		</div>
-		<div class="w-1/2">
-			{#each technologies as { Icon, name }}
-				<div class="flex flex-row gap-x-3 items-center mb-3">
-					<img class="h-6" src={Icon} alt={name + '-icon'} />
-					<p class="text-text-secondary tech">{name}</p>
-				</div>
-			{/each}
-		</div>
+<div class="w-full mt-28">
+	<h2 class="text-text-primary italic">What I work with</h2>
+
+	<div class="mt-5 flex flex-wrap gap-x-2 gap-y-3">
+		{#each skills as { Icon, name }}
+			<span class="chip">
+				<img class="chip-icon" src={Icon} alt="" aria-hidden="true" />
+				{name}
+			</span>
+		{/each}
 	</div>
+
+	<p class="text-text-secondary mt-5 text-sm">
+		…plus Kafka, feature flags, observability tooling, and whatever the problem demands.
+	</p>
 </div>
 
 <style>
-	.tech {
-		font-size: 1.2rem;
-		line-height: 1.7rem;
+	.chip {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.45rem;
+		padding: 0.35rem 0.8rem;
+		border: 1px solid var(--hairline);
+		border-radius: 999px;
+		font-size: 0.95rem;
+		color: var(--text-secondary);
+		transition:
+			color 0.2s ease-out,
+			border-color 0.2s ease-out;
+	}
+
+	.chip:hover {
+		color: var(--text-primary);
+		border-color: var(--text-secondary);
+	}
+
+	.chip-icon {
+		height: 1.1rem;
+		width: auto;
+	}
+
+	.text-sm {
+		font-size: 0.9rem;
 	}
 </style>

@@ -1,16 +1,21 @@
 <script>
+	import { onMount } from 'svelte';
 	import Links from './Links.svelte';
 
-	let stackSide = 'frontend';
+	let stackSide = 'full-stack';
 
-	setInterval(() => {
-		stackSide = stackSide === 'frontend' ? 'backend' : 'frontend';
-	}, 1000);
+	onMount(() => {
+		const timer = setInterval(() => {
+			stackSide = stackSide === 'frontend' ? 'backend' : 'frontend';
+		}, 1000);
+
+		return () => clearInterval(timer);
+	});
 </script>
 
 <div class="w-full mt-32">
 	<h1 class="text-text-primary">Hey, I'm Prashant Baghel!</h1>
-	<p class="text-text-primary description">I'm a {stackSide} developer</p>
+	<p class="text-text-primary description">I'm a <b>{stackSide}</b> developer</p>
 	<Links />
 </div>
 

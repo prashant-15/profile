@@ -2,7 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Default: dark */
 :root {
+  color-scheme: dark;
+
   --bg-primary: #23252F;
   --bg-inverse: #FAF9F6;
 
@@ -10,6 +13,49 @@
   --text-secondary: #94a3b8;
   --text-inverse-primary: #000000;
   --text-inverse-secondary: #909090;
+
+  /* Footer surface — its own vars so footer works in both themes */
+  --footer-bg: #1B1D25;
+  --footer-text-primary: #e2e8f0;
+  --footer-text-secondary: #909090;
+
+  --icon-invert: 0.75;
+
+  --hairline: rgba(226, 232, 240, 0.14);
+  --row-tint: rgba(226, 232, 240, 0.05);
+}
+
+/* Light */
+[data-theme='light'] {
+  color-scheme: light;
+
+  --bg-primary: #FAF9F6;
+  --bg-inverse: #23252F;
+
+  --text-primary: #1E2430;
+  --text-secondary: #5A6474;
+  --text-inverse-primary: #FAF9F6;
+  --text-inverse-secondary: #909090;
+
+  /* Footer stays dark in light mode (contrast section, not inverted page) */
+  --footer-bg: #1B1D25;
+  --footer-text-primary: #e2e8f0;
+  --footer-text-secondary: #909090;
+
+  --icon-invert: 0;
+
+  --row-tint: rgba(30, 36, 48, 0.05);
+}
+
+@layer utilities {
+  /* Replaces raw invert-[.75] on PNG icons so they read on both themes */
+  .icon-invert {
+    filter: invert(var(--icon-invert));
+  }
+
+  .border-hairline {
+    border-color: var(--hairline);
+  }
 }
 
 h1 {
@@ -20,9 +66,19 @@ h1 {
 h2 {
   font-size: 1.6rem;
   font-weight: 500;
-} 
+}
 
 h3 {
   font-size: 1.4rem;
   font-weight: 400;
-} 
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
